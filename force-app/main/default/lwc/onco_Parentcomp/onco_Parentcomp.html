@@ -1,0 +1,27 @@
+<template>
+    <div class="slds-grid slds-gutters">
+
+        <!-- Knowledge Card -->
+        <div class="slds-col slds-size_6-of-12">
+            <c-onco-appointment-card
+                title="Knowledge Center"
+                subtitle="Browse articles &amp; FAQs"
+                icon="utility:knowledge_base"
+                url="/OncoGlobal/s/knowledge-list"
+                object-details={knowledgeDetails}>
+            </c-onco-appointment-card>
+        </div>
+
+        <!-- Appointments Card -->
+        <div class="slds-col slds-size_6-of-12">
+            <c-onco-appointment-card
+                title="My Appointments"
+                subtitle="View &amp; manage schedule"
+                icon="utility:event"
+                url="/OncoGlobal/s/recordlist/ServiceAppointment"
+                object-details={appointmentDetails}>
+            </c-onco-appointment-card>
+        </div>
+
+    </div>
+</template>

@@ -1,0 +1,51 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "appointmentLink" : {
+      "title" : "appointmentLink",
+      "description" : "Raw Salesforce URL of the canceled appointment record.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "appointmentLinkFormatted" : {
+      "title" : "appointmentLinkFormatted",
+      "description" : "Slack formatted hyperlink for the canceled appointment record. Use this field when displaying the link to the user in Slack. Format is View Appointment as clickable link.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "hcpName" : {
+      "title" : "hcpName",
+      "description" : "Name of the authenticated Healthcare Provider. Populated after successful authentication via unique code.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "message" : {
+      "title" : "message",
+      "description" : "Result message of the cancellation. Shows success message with appointment number and patient name on success. Shows error reason on failure e.g. already canceled, not authorized, not found.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "success" : {
+      "title" : "success",
+      "description" : "'Boolean flag indicating if cancellation was successful. True means appointment was canceled. False means cancellation failed. Always check this field before showing result to user.",
+      "lightning:type" : "lightning__booleanType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

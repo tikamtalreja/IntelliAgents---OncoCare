@@ -1,0 +1,139 @@
+<template>
+    <article class="slds-card">
+
+        <div class="slds-card__header">
+            <header class="slds-media">
+                <div class="slds-media__figure">
+                    <lightning-icon icon-name="standard:customers" size="small" alternative-text={headerTitle}></lightning-icon>
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                        <span class="slds-text-heading_small">{headerTitle}</span>
+                    </h2>
+                    <p class="slds-text-body_small slds-text-color_weak">{headerSub}</p>
+                </div>
+            </header>
+        </div>
+
+        <div class="slds-card__body">
+
+            <!-- Filters always show — even in empty-home state, the user
+                 needs the city picklist to recover by picking a nearby city -->
+            <template if:true={hasFilters}>
+                <div class="ds-filter-box">
+                    <div class="ds-picklist-grid">
+                        <template if:true={hasSubFilters}>
+                            <lightning-combobox
+                                name="subSpecialty"
+                                label="Sub-speciality"
+                                value={selectedSubSpec}
+                                placeholder="All"
+                                options={subOptions}
+                                onchange={handleSubChange}
+                                variant="label-stacked">
+                            </lightning-combobox>
+                        </template>
+                        <template if:true={hasCityFilters}>
+                            <lightning-combobox
+                                name="city"
+                                label="City"
+                                value={selectedCity}
+                                placeholder="All"
+                                options={cityOptions}
+                                onchange={handleCityChange}
+                                variant="label-stacked">
+                            </lightning-combobox>
+                        </template>
+                    </div>
+                </div>
+            </template>
+
+            <template if:true={isInEmptyHomeState}>
+                <div class="slds-p-vertical_large slds-align_absolute-center">
+                    <div class="slds-text-align_center ds-empty-home">
+                        <lightning-icon icon-name="utility:location" size="medium" alternative-text="Location"></lightning-icon>
+                        <h3 class="slds-text-heading_small">No doctors in {emptyHomeCity}</h3>
+                        <p class="slds-text-body_small slds-text-color_weak">{emptyHomeMessage}</p>
+                    </div>
+                </div>
+            </template>
+
+            <template if:false={isInEmptyHomeState}>
+
+                <template if:true={hasDoctors}>
+                    <p class="ds-result-count">{resultCountText}</p>
+                </template>
+
+                <template if:true={hasVisibleDoctors}>
+                    <ul class="ds-doctor-list">
+                        <template for:each={visibleDoctors} for:item="d">
+                            <li key={d.providerName} class="ds-doctor-item">
+
+                                <div class="ds-avatar" style={d.avatarStyle}>
+                                    {d.initials}
+                                </div>
+
+                                <div class="ds-doctor-main">
+                                    <p class="ds-doctor-name">Dr. {d.providerName}</p>
+                                    <p class="ds-doctor-sub">{d.subSpecialty} · {d.facilityName}</p>
+                                    <p class="ds-doctor-meta">
+                                        {d.facilityCity}, {d.facilityState}
+                                        <template if:true={d.facilityPhone}> · {d.facilityPhone}</template>
+                                    </p>
+
+                                    <!-- Reputation badges — single row, full width available -->
+                                    <div class="ds-stat-row">
+                                        <template if:true={d.hasReviews}>
+                                            <span class="ds-stat ds-stat-rating">★ {d.ratingDisplay}</span>
+                                            <span class="ds-stat ds-stat-reviews">{d.totalReviews} reviews</span>
+                                            <span class="ds-stat ds-stat-recommend">{d.recommendDisplay}% recommend</span>
+                                        </template>
+                                        <template if:false={d.hasReviews}>
+                                            <span class="ds-stat ds-stat-norating">No reviews yet</span>
+                                        </template>
+                                    </div>
+                                </div>
+
+                            </li>
+                        </template>
+                    </ul>
+
+                    <template if:true={hasMore}>
+                        <div class="ds-load-more">
+                            <lightning-button
+                                label={loadMoreLabel}
+                                variant="neutral"
+                                icon-name="utility:chevrondown"
+                                icon-position="right"
+                                onclick={handleLoadMore}>
+                            </lightning-button>
+                        </div>
+                    </template>
+                </template>
+
+                <template if:false={hasDoctors}>
+                    <div class="slds-p-vertical_large slds-align_absolute-center">
+                        <div class="slds-text-align_center">
+                            <lightning-icon icon-name="utility:search" size="medium" alternative-text="No results"></lightning-icon>
+                            <h3 class="slds-text-heading_small">No doctors found</h3>
+                            <template if:true={message}>
+                                <p class="slds-text-body_small slds-text-color_weak">{message}</p>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+
+                <template if:true={noneVisibleDueToFilters}>
+                    <div class="slds-p-vertical_large slds-align_absolute-center">
+                        <div class="slds-text-align_center">
+                            <h3 class="slds-text-heading_small">No doctors match the selected filters</h3>
+                            <p class="slds-text-body_small slds-text-color_weak">Try widening your filters above.</p>
+                        </div>
+                    </div>
+                </template>
+
+            </template>
+
+        </div>
+    </article>
+</template>

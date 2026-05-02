@@ -1,0 +1,35 @@
+{
+  "required" : [ "patientUserId" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "healthcareProviderRecordId" : {
+      "title" : "HealthcareProvider Record Id",
+      "description" : "HealthcareProvider record Id passed from the doctor-finding topic. Do not ask the patient for this value.",
+      "lightning:type" : "lightning__recordIdType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "patientUserId" : {
+      "title" : "Patient User Id",
+      "description" : "Pass the Loggedin patient id through variable Onco_LoggenIn_User_Id",
+      "lightning:type" : "lightning__recordIdType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "preferredStartTime" : {
+      "title" : "Preferred Start Time",
+      "description" : "Patient preferred start datetime to begin slot search. Collected from patient conversation.",
+      "lightning:type" : "lightning__dateTimeStringType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "searchWindowDays" : {
+      "title" : "Search Window Days",
+      "description" : "Optional. Number of days forward to search for slots. Defaults to 7 if not provided.",
+      "lightning:type" : "lightning__integerType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Deliver personalized customer interactions with an autonomous AI agent. Agentforce Service Agent intelligently supports your customers with common inquiries and escalates complex issues.</description>
+    <localActionLinks>
+        <genAiFunctionName>AnswerQuestionsWithKnowledge_16jak000001luvp</genAiFunctionName>
+    </localActionLinks>
+    <localTopicLinks>
+        <genAiPluginName>Get_Appoinments_16jak000001luvp</genAiPluginName>
+    </localTopicLinks>
+    <localTopics>
+        <fullName>Get_Appoinments_16jak000001luvp</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Handles user requests related to retrieving service appointments. This includes queries like viewing upcoming appointments, checking schedules, or fetching appointment details using Slack user ID</description>
+        <developerName>Get_Appoinments_16jak000001luvp</developerName>
+        <genAiPluginInstructions>
+            <description>When the user asks for their appointments, follow these steps:
+
+STEP 1 - Ask for unique code:
+Ask the user: &quot;Please enter your unique HCP code to authenticate.&quot;
+Store their response in hcpUniqueCode conversation variable.
+
+STEP 2 - Call the action:
+Call Get_Service_Appointments with:
+- uniqueCode = hcpUniqueCode value from conversation variable
+
+STEP 3 - Confirm identity:
+From the action response, get hcpName from the first result.
+Ask the user: &quot;Just to confirm, are you [hcpName]? Please reply Yes or No.&quot;
+
+STEP 4 - Show appointments:
+If user says Yes → surface all appointments in Salesforce cards only with appointment link
+  When displaying appointments:
+Strictly format each appointment separated by two newlines. 
+Strictly Format the appointment link as &lt;URL|View Appointment&gt; for Slack compatibility.
+
+*Your Scheduled Appointments:*
+*(Total: [X] appointments)*
+
+If user says No → say &quot;Authentication failed. Please contact admin.&quot;
+
+STEP 5 - Security rules:
+Never skip the confirmation step.
+Never show appointments without confirmation.
+Never reveal the unique code back to the user.
+Always show the view appointment in link as &lt;URL|View Appointment&gt; for Slack compatibility.</description>
+            <developerName>instructions_0_1777547937753</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1777547937753</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>When the user asks to cancel an appointment:
+
+STEP 1 - Identify appointment:
+If the user has just viewed their appointments, ask:
+&quot;Which appointment would you like to cancel? 
+Please provide the Appointment Number (e.g. SA-0016).&quot;
+
+STEP 2 - Confirm before cancelling:
+Ask: &quot;Are you sure you want to cancel appointment 
+[AppointmentNumber] for patient [PatientName]? 
+Reply Yes to confirm or No to abort.&quot;
+
+STEP 3 - Call cancel action only if user says Yes:
+Call Cancel_Service_Appointment with:
+- appointmentId = the Id of the selected appointment
+- uniqueCode = hcpUniqueCode (already authenticated)
+
+STEP 4 - Show result:
+If success = true → show success message and strictly display the appointment link using appointmentLinkFormatted exactly as: 
+&lt;URL|View Appointment&gt; for Slack compatibility.
+
+If success = false → show error message
+
+NEVER cancel without explicit Yes confirmation from user.
+NEVER cancel appointments that belong to other HCPs.</description>
+            <developerName>instructions_0_1777551499267</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1777551499267</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Rules:
+- Always bold the appointment number line
+- Strictly add empty line space between appointments
+- Always show total count at top
+- Always use the appointmentLinkFormatted field exactly as returned from the action for the link
+- Use numbered emojis 1️⃣ 2️⃣ 3️⃣ 4️⃣ for each appointment
+- If time is null show &quot;Not scheduled yet&quot;
+- Never hardcode URLs — always use display the appointment link using appointmentLinkFormatted exactly as: 
+&lt;URL|View Appointment&gt; for Slack compatibility response</description>
+            <developerName>instructions_0_1777634609462</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1777634609462</masterLabel>
+            <sortOrder>2</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Get_Service_Appointments_179ak000002vuyn</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Cancel_Service_Appointment_179ak000002vuyn</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Cancel_Service_Appointment_179ak000002vuyn</fullName>
+            <description>Cancel a Service Appointment after authenticating via Unique Code</description>
+            <developerName>Cancel_Service_Appointment_179ak000002vuyn</developerName>
+            <invocationTarget>Onco_CancelServiceAppointmentAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Cancel_Service_Appointment</localDeveloperName>
+            <masterLabel>Cancel Service Appointment</masterLabel>
+            <progressIndicatorMessage>loading.....</progressIndicatorMessage>
+        </localActions>
+        <localActions>
+            <fullName>Get_Service_Appointments_179ak000002vuyn</fullName>
+            <description>Retrieve Service Appointments via Unique Code Authentication</description>
+            <developerName>Get_Service_Appointments_179ak000002vuyn</developerName>
+            <invocationTarget>Onco_GetServiceAppointmentsAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Get_Service_Appointments</localDeveloperName>
+            <masterLabel>Get Service Appointments</masterLabel>
+            <progressIndicatorMessage>Loading.........</progressIndicatorMessage>
+        </localActions>
+        <localDeveloperName>Get_Appoinments</localDeveloperName>
+        <masterLabel>Get Appoinments</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>Your job is only to retrieve and return service appointment details. Do not create, update, cancel, or modify any appointments. Use available inputs like Slack user ID to fetch appointment data and respond with relevant details such as date, time, and status.</scope>
+    </localTopics>
+    <masterLabel>Agentforce Service Agent</masterLabel>
+    <plannerActions>
+        <fullName>AnswerQuestionsWithKnowledge_16jak000001luvp</fullName>
+        <description>Answers questions about company policies and procedures, troubleshooting steps, or product information. For example: “What is your return policy?” “How do I fix an issue?” or “What features does a product have?”</description>
+        <developerName>AnswerQuestionsWithKnowledge_16jak000001luvp</developerName>
+        <invocationTarget>streamKnowledgeSearch</invocationTarget>
+        <invocationTargetType>standardInvocableAction</invocationTargetType>
+        <isConfirmationRequired>false</isConfirmationRequired>
+        <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+        <localDeveloperName>AnswerQuestionsWithKnowledge</localDeveloperName>
+        <masterLabel>Answer Questions with Knowledge</masterLabel>
+        <progressIndicatorMessage>Getting answers</progressIndicatorMessage>
+        <source>EmployeeCopilot__AnswerQuestionsWithKnowledge</source>
+    </plannerActions>
+    <plannerSurfaces>
+        <adaptiveResponseAllowed>true</adaptiveResponseAllowed>
+        <callRecordingAllowed>false</callRecordingAllowed>
+        <surface>SurfaceAction__CustomerWebClient</surface>
+        <surfaceType>CustomerWebClient</surfaceType>
+    </plannerSurfaces>
+    <plannerSurfaces>
+        <adaptiveResponseAllowed>true</adaptiveResponseAllowed>
+        <callRecordingAllowed>false</callRecordingAllowed>
+        <surface>SurfaceAction__Messaging</surface>
+        <surfaceType>Messaging</surfaceType>
+    </plannerSurfaces>
+    <plannerType>AiCopilot__ReAct</plannerType>
+    <ruleExpressions>
+        <conditions>
+            <leftOperand>isVerified</leftOperand>
+            <leftOperandType>Variable</leftOperandType>
+            <operator>equal</operator>
+            <rightOperandValue>true</rightOperandValue>
+        </conditions>
+        <expression>Verified_User</expression>
+        <expressionLabel>Verified User</expressionLabel>
+        <expressionName>Verified_User</expressionName>
+        <expressionType>sel</expressionType>
+    </ruleExpressions>
+</GenAiPlannerBundle>

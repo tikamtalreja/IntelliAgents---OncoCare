@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Health Agent Queue</name>
+    <queueMembers>
+        <users>
+            <user>health_assistant@00dak00000ofcn0742784076.ext</user>
+            <user>epic.8873fd08b798@orgfarm.salesforce.com</user>
+        </users>
+    </queueMembers>
+    <queueRoutingConfig>Health_Agent_Routing</queueRoutingConfig>
+    <queueSobject>
+        <sobjectType>HealthCareDiagnosis</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>HealthCareProcedure</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>HealthRiskEvaluation</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>HealthcareProviderSpecialty</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>MessagingSession</sobjectType>
+    </queueSobject>
+</Queue>

@@ -1,0 +1,15 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "doctorOutputList" : {
+      "title" : "doctorOutputList",
+      "description" : "render the doctor list on UI, and ask user to select one and mention the detail on chat",
+      "lightning:type" : "c__Onco_FindDoctor",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

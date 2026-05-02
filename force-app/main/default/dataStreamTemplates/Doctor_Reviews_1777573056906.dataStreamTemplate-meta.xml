@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataStreamTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <dataConnectionSourceParameters>
+        <fullName>delimiter</fullName>
+        <paramName>delimiter</paramName>
+        <value>,</value>
+    </dataConnectionSourceParameters>
+    <dataConnectionSourceParameters>
+        <fullName>fileName</fullName>
+        <paramName>fileName</paramName>
+        <value>Mocked Reviews.csv</value>
+    </dataConnectionSourceParameters>
+    <dataConnectionSourceParameters>
+        <fullName>fileType</fullName>
+        <paramName>fileType</paramName>
+        <value>CSV</value>
+    </dataConnectionSourceParameters>
+    <dataConnectionSourceParameters>
+        <fullName>importDirectory</fullName>
+        <paramName>importDirectory</paramName>
+        <value>005ak00000WDkLxAAL/2026-04-28T05:20:42:933Z</value>
+    </dataConnectionSourceParameters>
+    <dataConnectionSourceParameters>
+        <fullName>isDataStreamConfigValid</fullName>
+        <paramName>isDataStreamConfigValid</paramName>
+        <value>true</value>
+    </dataConnectionSourceParameters>
+    <dataConnectionSourceParameters>
+        <fullName>parentDirectory</fullName>
+        <paramName>parentDirectory</paramName>
+        <value>s3://aws-prod8-cacentral1-cdp2-lakehouse-1/sfdrive/a360-prod8-09e6535e3a1846a59bd949829a3e4d8f/a1fdaf74-17b1-4c64-8123-0a628cbfa5d0__uuid/flup-fileUploads/dc_file_upload</value>
+    </dataConnectionSourceParameters>
+    <dataSourceBundleDefinition>Doctor_Reviews</dataSourceBundleDefinition>
+    <dataSourceObject>Doctor_Reviews</dataSourceObject>
+    <masterLabel>Doctor Reviews</masterLabel>
+    <objectCategory>Salesforce_SFDCReferenceModel_0_93.Engagement</objectCategory>
+    <refreshFrequency>NONE</refreshFrequency>
+    <refreshMode>UPSERT</refreshMode>
+    <sourceObjectName>Doctor_Reviews</sourceObjectName>
+    <streamType>INGEST</streamType>
+    <templateVersion>1</templateVersion>
+</DataStreamTemplate>

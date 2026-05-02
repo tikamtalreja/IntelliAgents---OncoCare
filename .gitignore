@@ -1,0 +1,16 @@
+# Salesforce
+.sfdx/
+.sf/
+.localdevserver/
+deploy-options.json
+.vscode/
+
+# Temp / generated
+*.log
+*.tmp
+*.bak
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db

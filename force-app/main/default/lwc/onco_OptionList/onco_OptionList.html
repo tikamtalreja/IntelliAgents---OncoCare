@@ -1,0 +1,75 @@
+<template>
+    <article class="slds-card">
+
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <lightning-icon icon-name="standard:search" size="small" alternative-text={headerTitle}></lightning-icon>
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                        <span class="slds-text-heading_small">{headerTitle}</span>
+                    </h2>
+                    <p class="slds-text-body_small slds-text-color_weak">{headerSub}</p>
+                </div>
+            </header>
+        </div>
+
+        <div class="slds-card__body slds-card__body_inner">
+
+            <template if:true={hasError}>
+                <div class="ds-error-alert" role="alert">
+                    <lightning-icon icon-name="utility:error" size="x-small" variant="error" alternative-text="Error"></lightning-icon>
+                    <div class="ds-error-content">
+                        <p class="ds-error-title">We hit a problem</p>
+                        <p class="ds-error-message">{value.errorMessage}</p>
+                    </div>
+                </div>
+            </template>
+
+            <template if:false={hasError}>
+
+                <template if:true={hasOptions}>
+                    <ul class="slds-listbox slds-listbox_inline">
+                        <template for:each={visibleOptions} for:item="opt">
+                            <li key={opt} class="slds-listbox-item">
+                                <span class="slds-pill slds-pill_link ds-pill-clickable"
+                                      role="button"
+                                      data-option={opt}
+                                      onclick={handleSelect}
+                                      title={opt}>
+                                    <span class="slds-pill__label">{opt}</span>
+                                </span>
+                            </li>
+                        </template>
+                    </ul>
+
+                    <template if:true={hasMore}>
+                        <div class="slds-m-top_small slds-align_absolute-center">
+                            <lightning-button
+                                label={loadMoreLabel}
+                                variant="neutral"
+                                icon-name="utility:chevrondown"
+                                icon-position="right"
+                                onclick={handleLoadMore}>
+                            </lightning-button>
+                        </div>
+                    </template>
+                </template>
+
+                <template if:false={hasOptions}>
+                    <div class="slds-p-vertical_large slds-align_absolute-center">
+                        <div class="slds-text-align_center">
+                            <h3 class="slds-text-heading_small">No options available</h3>
+                            <template if:true={value.message}>
+                                <p class="slds-text-body_small slds-text-color_weak">{value.message}</p>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+
+            </template>
+
+        </div>
+    </article>
+</template>

@@ -1,0 +1,28 @@
+{
+  "required" : [ "searchBy", "searchValue", "userId" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "searchBy" : {
+      "title" : "Search By",
+      "description" : "SPECIALITY, DEPARTMENT or FACILITY",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "searchValue" : {
+      "title" : "Search Value",
+      "description" : "The chosen speciality / department / facility name",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "userId" : {
+      "title" : "User Id",
+      "description" : "Logged-in User Id — used to resolve the patient's city for default filter. pass the value from 'Onco Logged In user variable '",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

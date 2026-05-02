@@ -1,0 +1,21 @@
+{
+  "required" : [ "optionType", "userId" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "optionType" : {
+      "title" : "Option Type",
+      "description" : "SPECIALITY, DEPARTMENT or FACILITY",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "userId" : {
+      "title" : "User Id",
+      "description" : "Logged-in User Id — used to resolve the patient's Contact and MailingCity.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

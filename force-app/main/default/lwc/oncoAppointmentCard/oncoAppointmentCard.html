@@ -1,0 +1,20 @@
+<template>
+    <div class="card" onclick={handleClick}>
+
+        <!-- use badgeCount not badge -->
+        <template if:true={badgeCount}>
+            <div class="badge">{badgeCount}</div>
+        </template>
+
+        <div class="icon-box">
+            <lightning-icon
+                icon-name={icon}
+                size="small"
+                class="icon">
+            </lightning-icon>
+        </div>
+
+        <div class="title">{title}</div>
+        <div class="subtitle">{subtitle}</div>
+    </div>
+</template>

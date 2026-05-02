@@ -1,0 +1,44 @@
+<template>
+    <div class="container">
+
+        <!-- TOP HEADER -->
+        <div class="top-bar">
+            <div class="left">
+              <div class="logo-box">
+                <img src={logoUrl} class="logo-img" alt="Onco Global Logo" />
+              </div>
+                <div>
+                    <div class="title">Onco Global Patient Scheduling Portal</div>
+                    <div class="subtitle">Powered by Agentforce</div>
+                </div>
+            </div>
+
+            <div class="profile-icon" onclick={handleProfileClick} title="View Profile">
+                <div class="avatar-circle">
+                    <lightning-icon 
+                        icon-name="utility:user" 
+                        size="small" 
+                        alternative-text="Profile">
+                    </lightning-icon>
+                </div>
+            </div>
+        </div>
+
+        <!-- PATIENT INFO -->
+        <div class="patient-section">
+            <img src={avatarUrl} class="avatar"/>
+            <span class="green-dot"></span>
+
+            <div class="info">
+                <div class="greeting">{greeting}</div>
+                <div class="name">
+                    {patientName ? patientName : 'Loading...'}
+                </div>
+                <div class="patient-id">
+                    Patient ID: {patientId ? patientId : 'Loading...'}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</template>

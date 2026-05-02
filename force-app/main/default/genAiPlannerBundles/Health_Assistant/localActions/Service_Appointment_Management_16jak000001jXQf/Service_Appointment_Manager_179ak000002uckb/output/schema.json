@@ -1,0 +1,42 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "appointmentResultsJson" : {
+      "title" : "Appointment Results JSON",
+      "description" : "JSON array returned by GET_APPOINTMENTS. Each entry contains serviceAppointmentId, appointmentNumber, startTime, endTime, and doctorName. Parse this to present appointment options to the patient and to extract serviceAppointmentId for cancel or reschedule.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "isSuccess" : {
+      "title" : "Success",
+      "description" : "Boolean indicating whether the operation succeeded. If false, relay the message to the patient.",
+      "lightning:type" : "lightning__booleanType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "message" : {
+      "title" : "Message",
+      "description" : "Confirmation or error detail. Surface this to the patient in all cases.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "serviceAppointmentId" : {
+      "title" : "Service Appointment Id",
+      "description" : "Returned on successful BOOK_APPOINTMENT or RESCHEDULE_APPOINTMENT. Store for reference.",
+      "lightning:type" : "lightning__recordIdType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

@@ -1,0 +1,18 @@
+{
+  "collection" : {
+    "renderer" : {
+      "componentOverrides" : {
+        "$" : {
+          "definition" : "c/onco_DoctorSearch"
+        }
+      }
+    }
+  },
+  "renderer" : {
+    "componentOverrides" : {
+      "$" : {
+        "definition" : "c/onco_DoctorSearch"
+      }
+    }
+  }
+}

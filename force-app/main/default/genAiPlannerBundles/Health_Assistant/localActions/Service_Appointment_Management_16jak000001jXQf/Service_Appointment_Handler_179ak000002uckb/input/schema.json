@@ -1,0 +1,43 @@
+{
+  "required" : [ "patientUserId" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "actionType" : {
+      "title" : "Action Type",
+      "description" : "BOOK_APPOINTMENT | GET_APPOINTMENTS | CANCEL_APPOINTMENT | RESCHEDULE_APPOINTMENT",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "healthcareProviderRecordId" : {
+      "title" : "HealthcareProvider Record Id",
+      "description" : "Passed from the doctor-finding topic as a conversation variable. Required for BOOK_APPOINTMENT only. Do not ask the patient.\n",
+      "lightning:type" : "lightning__recordIdType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "patientUserId" : {
+      "title" : "Patient User Id",
+      "description" : "Pass the Loggedin patient id through variable Onco_LoggenIn_User_Id\n",
+      "lightning:type" : "lightning__recordIdType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "serviceAppointmentId" : {
+      "title" : "Service Appointment Id",
+      "description" : "The Id of the appointment to act on. Required for CANCEL_APPOINTMENT and RESCHEDULE_APPOINTMENT. Obtain from the appointmentResultsJson output of a prior GET_APPOINTMENTS call. No need to get this id for Booking an appointment.\n",
+      "lightning:type" : "lightning__recordIdType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "startTime" : {
+      "title" : "Start Time",
+      "description" : "Pass the start Time for booking appointment\n",
+      "lightning:type" : "lightning__dateTimeStringType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType",
+  "lightning:textIndexed" : true
+}

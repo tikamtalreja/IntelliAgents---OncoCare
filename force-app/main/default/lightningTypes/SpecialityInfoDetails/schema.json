@@ -1,0 +1,5 @@
+{
+  "description" : "To display list of records in the card",
+  "lightning:type" : "@apexClassType/c__GetSpecialityInfo$SpecialtyOutput",
+  "title" : "Generic Output Response"
+}

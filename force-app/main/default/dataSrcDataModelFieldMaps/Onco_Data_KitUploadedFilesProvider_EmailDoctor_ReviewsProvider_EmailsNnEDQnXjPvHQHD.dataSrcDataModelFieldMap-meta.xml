@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataSrcDataModelFieldMap xmlns="http://soap.sforce.com/2006/04/metadata">
+    <filterApplied>false</filterApplied>
+    <masterLabel>Onco_Data_KitUploadedFilesProvider_EmailDoctor_ReviewsProvider_EmailsNnEDQnXjPvHQHD</masterLabel>
+    <sourceField>Doctor_Reviews.Provider_Email__c</sourceField>
+    <targetField>Doctor_Reviews__dlm.Provider_Email__c</targetField>
+    <templateVersion>1</templateVersion>
+    <versionNumber>1.0</versionNumber>
+</DataSrcDataModelFieldMap>

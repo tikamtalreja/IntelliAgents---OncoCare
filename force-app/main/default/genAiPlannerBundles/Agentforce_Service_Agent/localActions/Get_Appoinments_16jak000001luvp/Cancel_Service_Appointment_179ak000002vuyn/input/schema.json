@@ -1,0 +1,21 @@
+{
+  "required" : [ "appointmentId" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "appointmentId" : {
+      "title" : "appointmentId",
+      "description" : "Salesforce record Id of the Service Appointment to cancel. Must belong to the authenticated HCP. Get this from the appointmentId field returned by Get Service Appointments action.",
+      "lightning:type" : "lightning__recordIdType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "uniqueCode" : {
+      "title" : "uniqueCode",
+      "description" : "Unique authentication code of the HCP. Used to verify identity and ensure HCP can only cancel their own appointments. Pass hcpUniqueCode conversation variable here.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

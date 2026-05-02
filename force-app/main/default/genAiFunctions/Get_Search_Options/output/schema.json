@@ -1,0 +1,15 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "optionDetails" : {
+      "title" : "optionDetails",
+      "description" : "Render in UI and ask user to select one and reply on chat",
+      "lightning:type" : "c__Onco_OptionList",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

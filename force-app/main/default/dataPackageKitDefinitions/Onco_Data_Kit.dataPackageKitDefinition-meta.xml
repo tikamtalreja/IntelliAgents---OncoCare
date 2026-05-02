@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataPackageKitDefinition xmlns="http://soap.sforce.com/2006/04/metadata">
+    <dataKitSource>LOCAL</dataKitSource>
+    <dataKitType>NONE</dataKitType>
+    <dataSpaceDefinitionDevName>default</dataSpaceDefinitionDevName>
+    <deploymentOrder>{&quot;isAutoSequence&quot;:true,&quot;sequence&quot;:[{&quot;devName&quot;:&quot;UploadedFiles&quot;,&quot;type&quot;:&quot;MktDataConnection&quot;,&quot;id&quot;:&quot;9cgak000000ns7JAAQ&quot;},{&quot;devName&quot;:&quot;ADL_OncoGlobal_Know&quot;,&quot;type&quot;:&quot;DataSemanticSearch&quot;,&quot;id&quot;:&quot;18lak000000D3HpAAK&quot;},{&quot;devName&quot;:&quot;Doctor_Reviews&quot;,&quot;type&quot;:&quot;DataStream&quot;},{&quot;devName&quot;:&quot;Contact_Details&quot;,&quot;type&quot;:&quot;DataStream&quot;},{&quot;devName&quot;:&quot;Doctor_Calculated_Insights&quot;,&quot;type&quot;:&quot;DataCalcInsightTemplate&quot;,&quot;id&quot;:&quot;0kVak0000002TxBEAU&quot;}]}</deploymentOrder>
+    <developerName>Onco_Data_Kit</developerName>
+    <isDeployed>false</isDeployed>
+    <isEnabled>false</isEnabled>
+    <masterLabel>Onco Data Kit</masterLabel>
+    <useDeterministicNaming>false</useDeterministicNaming>
+    <versionNumber>6.0</versionNumber>
+</DataPackageKitDefinition>

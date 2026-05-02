@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>bTu52QkmTZIc+BDfiTPBjQ0V89/utb+JP6S5H3eU81M=_1</activeVersionIdentifier>
+    <developerName>Treatment_Details</developerName>
+    <masterLabel>Treatment Details</masterLabel>
+    <overridable>false</overridable>
+    <templateVersions>
+        <content>You are a healthcare assistant helping patients understand medical specialties.
+
+The patient asked about: {!$Input:UserInput}
+
+Use ONLY the following reference documents from our specialty knowledge library to answer.
+Do not make up information that is not in these documents.
+{!$EinsteinSearch:File_ADL_OncoGlobal_Know_1Cx_Cn0588cc6fa.results} 
+ 
+
+Respond in valid JSON format with exactly these fields:
+{
+ &quot;specialtyName&quot;: &quot;the name the patient asked about&quot;,
+ &quot;about&quot;: &quot;1-2 sentence description of the specialty&quot;,
+ &quot;treatments&quot;: [&quot;array of treatments offered&quot;],
+ &quot;supportServices&quot;: [&quot;array of support services&quot;],
+ &quot;whenToVisit&quot;: &quot;1-2 sentences on when to see this specialist&quot;,
+ &quot;whatToExpect&quot;: &quot;1-2 sentences on what happens at first visit&quot;,
+ &quot;insuranceNote&quot;: &quot;1 sentence on cost and insurance&quot;,
+ &quot;sourceCount&quot;: integer number of documents referenced
+}
+
+IMPORTANT: Return ONLY the JSON object. No markdown fences, no explanations, no preamble.
+If the specialty is not found in the documents, return:
+{&quot;specialtyName&quot;: &quot;&lt;input&gt;&quot;, &quot;about&quot;: &quot;NOT_FOUND&quot;, &quot;treatments&quot;: [], &quot;supportServices&quot;: [], &quot;whenToVisit&quot;: &quot;&quot;, &quot;whatToExpect&quot;: &quot;&quot;, &quot;insuranceNote&quot;: &quot;&quot;, &quot;sourceCount&quot;: 0}
+</content>
+        <fileDroppingStrategy>{&quot;dropFilesBy&quot;:&quot;LAST_MODIFIED_DATE&quot;,&quot;dropFileStartingWith&quot;:&quot;OLDEST&quot;}</fileDroppingStrategy>
+        <inputs>
+            <apiName>UserInput</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>UserInput</masterLabel>
+            <referenceName>Input:UserInput</referenceName>
+            <required>true</required>
+        </inputs>
+        <isCitationEnabled>false</isCitationEnabled>
+        <primaryModel>sfdc_ai__DefaultBedrockAnthropicClaude45Opus</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getEinsteinRetrieverResults/File_ADL_OncoGlobal_Know_1Cx_Cn0588cc6fa</definition>
+            <description>File_ADL_OncoGlobal_Know</description>
+            <label>File_ADL_OncoGlobal_Know</label>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>searchText</parameterName>
+                <valueExpression>{!$Input:UserInput}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://List&lt;String&gt;</definition>
+                <isRequired>false</isRequired>
+                <parameterName>outputFieldNames</parameterName>
+                <valueExpression>[&quot;Chunk&quot;]</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://Integer</definition>
+                <isRequired>false</isRequired>
+                <parameterName>resultCount</parameterName>
+                <valueExpression>4</valueExpression>
+            </parameters>
+            <referenceName>EinsteinSearch:File_ADL_OncoGlobal_Know_1Cx_Cn0588cc6fa</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>bTu52QkmTZIc+BDfiTPBjQ0V89/utb+JP6S5H3eU81M=_1</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

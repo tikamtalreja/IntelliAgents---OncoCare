@@ -1,0 +1,15 @@
+{
+  "required" : [ "specialtyName" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "specialtyName" : {
+      "title" : "Specialty Name",
+      "description" : "Name of the specialty or subspecialty the patient asked about. E.g. Cardiology, Pediatric Oncology, Urologic Oncology.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType",
+  "lightning:textIndexed" : true
+}

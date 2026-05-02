@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Returns doctors matching the selected speciality, department, or facility.</description>
+    <developerName>Find_Doctors</developerName>
+    <invocationTarget>Onco_FindDoctors</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+    <localDeveloperName>Find_Doctors</localDeveloperName>
+    <masterLabel>Find Doctors</masterLabel>
+    <progressIndicatorMessage>fetching the doctor details</progressIndicatorMessage>
+</GenAiFunction>

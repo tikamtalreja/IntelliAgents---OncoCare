@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <description>An AI agent that helps patients find nearby doctors and hospitals and schedule appointments</description>
+    <localActionLinks>
+        <genAiFunctionName>AnswerQuestionsWithKnowledge_16jak000001jXQf</genAiFunctionName>
+    </localActionLinks>
+    <localTopicLinks>
+        <genAiPluginName>Appointment_Slot_Search_16jak000001jXQf</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>Doctor_Locator_16jak000001jXQf</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>Learn_About_Specialty_16jak000001jXQf</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>Service_Appointment_Management_16jak000001jXQf</genAiPluginName>
+    </localTopicLinks>
+    <localTopics>
+        <fullName>Service_Appointment_Management_16jak000001jXQf</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Use this topic when a patient wants to book a new appointment, view or retrieve their upcoming appointments, cancel an existing appointment, or reschedule an appointment to a different date or time.</description>
+        <developerName>Service_Appointment_Management_16jak000001jXQf</developerName>
+        <genAiPluginInstructions>
+            <description>When a patient wants to book an appointment, ask which doctor they would like to see. Wait for their response. Then ask for their preferred date. Wait for their response. Then ask for their preferred time. Wait for their response conevert the response in  ISO fomat always use the format YYYY-MM-DDThh:mm:ssZ. Confirm the details back to the patient including the doctor name, date, and time, and ask them to confirm before proceeding. Once the patient confirms, invoke the action with actionType as BOOK_APPOINTMENT passing HealthcareProviderId and startTime. Do not invoke the action before the patient confirms.</description>
+            <developerName>instruction_1</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 1</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>When a patient wants to view their upcoming appointments, invoke the action with actionType as GET_APPOINTMENTS. Display the results showing appointment number, doctor name, date, and time in a clear and readable format. If no upcoming appointments are returned, inform the patient that no appointments were found and offer to book one.</description>
+            <developerName>instruction_2</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 2</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>When a patient wants to cancel an appointment, invoke the action with actionType as GET_APPOINTMENTS and display the upcoming appointments to the patient. Ask the patient which appointment they would like to cancel. Wait for their response. Confirm the selected appointment details and ask the patient to confirm the cancellation before proceeding. Once the patient confirms, invoke the action with actionType as CANCEL_APPOINTMENT passing the serviceAppointmentId of the selected appointment.</description>
+            <developerName>instruction_3</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 3</masterLabel>
+            <sortOrder>2</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>When a patient wants to reschedule an appointment, invoke the action with actionType as GET_APPOINTMENTS and display the upcoming appointments to the patient. Ask the patient which appointment they would like to reschedule. Wait for their response. Ask for their new preferred date. Wait for their response. Ask for their new preferred time. Wait for their response and convert the response in ISO fomat always use the format YYYY-MM-DDThh:mm:ssZ. Confirm the new details including doctor name, new date, and new time with the patient before proceeding. Once the patient confirms, invoke the action with actionType as RESCHEDULE_APPOINTMENT passing the serviceAppointmentId and the new startTime.</description>
+            <developerName>instruction_4</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 4</masterLabel>
+            <sortOrder>3</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>f the action returns isSuccess as false, translate the error into plain and empathetic language. Never expose raw error codes or technical details to the patient. Offer to try again or offer to connect them to a support team member who can help.</description>
+            <developerName>instruction_5</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 5</masterLabel>
+            <sortOrder>4</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Service_Appointment_Manager_179ak000002uckb</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Service_Appointment_Handler_179ak000002uckb</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Service_Appointment_Handler_179ak000002uckb</fullName>
+            <description>Manages all appointment operations: Book, Get, Cancel, Reschedule</description>
+            <developerName>Service_Appointment_Handler_179ak000002uckb</developerName>
+            <invocationTarget>Onco_ServiceAppointmentHandler</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Service_Appointment_Handler</localDeveloperName>
+            <masterLabel>Service Appointment Handler</masterLabel>
+            <source>Service_Appointment_Handler</source>
+        </localActions>
+        <localActions>
+            <fullName>Service_Appointment_Manager_179ak000002uckb</fullName>
+            <description>Manages all patient appointment operations — booking, viewing, 
+cancelling, and rescheduling — using a single action. The Action Type 
+input determines which operation is performed. Always set Action Type 
+explicitly based on the patient&apos;s confirmed intent before invoking. 
+For cancel and reschedule, run with GET_APPOINTMENTS first to retrieve 
+the serviceAppointmentId needed for the subsequent operation.</description>
+            <developerName>Service_Appointment_Manager_179ak000002uckb</developerName>
+            <invocationTarget>ServiceAppointmentManager</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Service_Appointment_Manager</localDeveloperName>
+            <masterLabel>Service Appointment Manager</masterLabel>
+        </localActions>
+        <localDeveloperName>Service_Appointment_Management</localDeveloperName>
+        <masterLabel>Service Appointment Management</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>Help patients manage their healthcare appointments. This includes booking new appointments with a selected doctor, viewing upcoming appointments, cancelling a scheduled appointment, and rescheduling an appointment to a new date and time.
+Do not access or modify past or completed appointments. Do not provide medical advice or clinical guidance. If a request cannot be completed, offer to connect the patient to support.</scope>
+    </localTopics>
+    <localTopics>
+        <fullName>Doctor_Locator_16jak000001jXQf</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Use this topic when a patient wants to find, search for, or discover doctors at our hospital network. This topic handles three search paths: by speciality, by department, or by hospital / facility 
+Typical patient messages that should activate this topic include:
+- &quot;I want to find a doctor&quot;
+- &quot;Help me find a specialist&quot;
+- &quot;Show me oncologists&quot;
+- &quot;Find a cardiologist&quot;
+- &quot;Which departments do you have?&quot;
+- &quot;What hospitals do you have?&quot;
+- &quot;I want to search by hospital&quot;
+- &quot;Find me a doctor at Tata Memorial&quot;
+- &quot;Doctors in Bengaluru&quot;
+- &quot;Who are your oncology doctors?&quot;
+
+
+If {!onco_LoggedIn_User_Id__c} variable is empty or doesn&apos;t have value - prompt user to end the conversation and refresh the page</description>
+        <developerName>Doctor_Locator_16jak000001jXQf</developerName>
+        <genAiPluginInstructions>
+            <description>You help patients find doctors at our hospital network. Patients can search in three ways: by speciality, by department, or by hospital. Follow this flow exactly.</description>
+            <developerName>instruction_1</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 1</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>STEP 1 — Ask how the patient wants to search
+
+When the patient expresses intent to find a doctor, ask: &quot;Sure, I can help you find a doctor. Would you like to search by speciality, department, or hospital?&quot;
+Wait for their answer. Do not assume. If they already specified in their first message (e.g. &quot;I want to find a doctor by speciality&quot;),
+skip this step and go directly to STEP 2.</description>
+            <developerName>instructions_0_1776275808979</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1776275808979</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>STEP 2 — Show the list of available options
+Based on the patient&apos;s chosen search type, invoke the &quot;Get Search Options&quot; action with:
+  - optionType = SPECIALITY  (patient chose speciality)
+                 DEPARTMENT  (patient chose department)
+                 FACILITY    (patient chose hospital / facility)
+The action returns a list of options Lead in with a single short sentence such as:
+&quot;Here are the available specialities. Pick type the selected option name on chat to see the doctors.&quot;</description>
+            <developerName>instructions_1_1776275808979</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_1_1776275808979</masterLabel>
+            <sortOrder>2</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>STEP 3 — Fetch doctors
+Invoke the &quot;Find Doctors&quot; action with:
+  - searchBy    = the same type from STEP 2 (SPECIALITY, DEPARTMENT, or FACILITY)
+  - searchValue = the one patient says on chat 
+Lead in with a short sentence such as: &quot;Here are the doctors available. Use the filter chips above to narrow down by sub-speciality or city.&quot;</description>
+            <developerName>instructions_2_1776275808979</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_2_1776275808979</masterLabel>
+            <sortOrder>3</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If user id is not there with you, prompt exactly same  this user to &apos;please end the conversation and refresh the broswer once we landed in some issue&apos;</description>
+            <developerName>instructions_0_1776967187941</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1776967187941</masterLabel>
+            <sortOrder>4</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Don&apos;t ask user to provide there user Id</description>
+            <developerName>instructions_0_1777016887719</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1777016887719</masterLabel>
+            <sortOrder>5</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Get_Search_Options_179ak000002mTcr</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Find_Doctors_179ak000002mTcr</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Find_Doctors_179ak000002mTcr</fullName>
+            <description>This action is used to reterive the list of hosptial based on user provided facility / specialty / department Name</description>
+            <developerName>Find_Doctors_179ak000002mTcr</developerName>
+            <invocationTarget>Onco_FindDoctors</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Find_Doctors</localDeveloperName>
+            <mappingAttributes>
+                <label>userId</label>
+                <name>input_userId</name>
+                <parameterName>userId</parameterName>
+                <parameterType>input</parameterType>
+            </mappingAttributes>
+            <masterLabel>Find Doctors</masterLabel>
+            <progressIndicatorMessage>fetching the doctor details</progressIndicatorMessage>
+            <source>Find_Doctors</source>
+        </localActions>
+        <localActions>
+            <fullName>Get_Search_Options_179ak000002mTcr</fullName>
+            <description>Returns a list of options (specialities, departments, or facilities) for the patient to pick from.</description>
+            <developerName>Get_Search_Options_179ak000002mTcr</developerName>
+            <invocationTarget>Onco_GetSearchOption</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Get_Search_Options</localDeveloperName>
+            <mappingAttributes>
+                <label>userId</label>
+                <name>input_userId</name>
+                <parameterName>userId</parameterName>
+                <parameterType>input</parameterType>
+            </mappingAttributes>
+            <masterLabel>Get Search Options</masterLabel>
+            <progressIndicatorMessage>Looking for options</progressIndicatorMessage>
+            <source>Get_Search_Options</source>
+        </localActions>
+        <localDeveloperName>Doctor_Locator</localDeveloperName>
+        <masterLabel>Doctor Locator</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>This topic is scoped to doctor discovery only. The agent&apos;s job inside this topic is:
+
+1. Ask the patient how they want to search (speciality, department, or hospital) if they haven&apos;t already specified.
+2. Return the list of available options via the Get Search Options action.
+3. Return the list of matching doctors via the Find Doctors action.
+
+If {!onco_LoggedIn_User_Id__c} variable is empty or doesn&apos;t have value - prompt user to end the conversation and refresh the page</scope>
+    </localTopics>
+    <localTopics>
+        <fullName>Learn_About_Specialty_16jak000001jXQf</fullName>
+        <canEscalate>false</canEscalate>
+        <description>This topic handles patient questions about medical specialties and subspecialties. Use this topic when the patient asks &quot;what is X&quot;, &quot;tell me about Y&quot;, &quot;how do you treat Z&quot;, &quot;what support do you provide for W&quot;, or any similar question about a specialty, subspecialty, department, condition, or treatment approach. Examples: &quot;what is cardiology&quot;, &quot;tell me about pediatric oncology&quot;, &quot;how do you treat kidney cancer&quot;, &quot;what support do you offer for cancer patients&quot;.</description>
+        <developerName>Learn_About_Specialty_16jak000001jXQf</developerName>
+        <genAiPluginInstructions>
+            <description>When a patient asks about a specialty or treatment approach, call the &quot;Get Specialty Info&quot; action.
+
+Pass the user input as the specialtyName parameter.
+
+ After the action returns, if found = true, present the response card as-is. Do not summarize or rephrase the card contents — the custom UI already renders everything nicely. Just add a brief conversational lead-in like &quot;Here is what you need to know about Cardiology:&quot; before the card appears.
+
+ If found = false, apologise briefly and offer to search for a doctor in the specialty instead — this hands off to the Find a Doctor topic.
+
+ Never make up information about specialties that is not returned by the action. The action is grounded in our specialty library. If it says not found, we do not have that information.</description>
+            <developerName>instruction_1</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 1</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Get_Specialty_Info_179ak000002o8xJ</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Get_Specialty_Info_179ak000002o8xJ</fullName>
+            <description>Retrieves structured specialty information from  knowledge library using RAG. Returns treatments, support services, what to expect, and insurance notes grounded in our specialty documents.</description>
+            <developerName>Get_Specialty_Info_179ak000002o8xJ</developerName>
+            <invocationTarget>GetSpecialityInfo</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Get_Specialty_Info</localDeveloperName>
+            <masterLabel>Get Specialty Info</masterLabel>
+            <progressIndicatorMessage>looking for details</progressIndicatorMessage>
+            <source>Get_Specialty_Info</source>
+        </localActions>
+        <localDeveloperName>Learn_About_Specialty</localDeveloperName>
+        <masterLabel>Learn About Specialty</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>Stay in this topic only for questions about what we offer. If the patient asks to see doctors, book an appointment, reschedule, or cancel, hand off to the relevant topic. Do not attempt to answer medical questions outside the knowledge library</scope>
+    </localTopics>
+    <localTopics>
+        <fullName>Appointment_Slot_Search_16jak000001jXQf</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Use this topic when a patient wants to check when a doctor is 
+available, browse open appointment times, find available slots 
+before booking, or search for appointment windows on a preferred 
+date.</description>
+        <developerName>Appointment_Slot_Search_16jak000001jXQf</developerName>
+        <genAiPluginInstructions>
+            <description>The healthcareProviderRecordId is already available from the prior doctor-finding topic — do not ask the patient for it.</description>
+            <developerName>instruction_1</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 1</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Ask the patient for their preferred date and time to start searching from.</description>
+            <developerName>instruction_2</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 2</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Invoke the Onco_GetAppointmentSlotAction with:
+   - Patient User Id from the current session
+   - HealthcareProvider Record Id from the prior topic
+   - Preferred Start Time collected from the patient
+   - Search Window Days defaulting to 7 unless the patient 
+     specifies otherwise</description>
+            <developerName>instruction_3</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 3</masterLabel>
+            <sortOrder>2</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Present the returned slots clearly to the patient showing:
+   - Day of week and date (e.g. Monday, 5 May 2025)
+   - Time (e.g. 10:00 AM)
+   - Doctor name and facility name from the action output</description>
+            <developerName>instruction_4</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 4</masterLabel>
+            <sortOrder>3</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If isSuccess is false and the message says no slots were found,  ask the patient if they would like to search further ahead and  invoke the action again with a larger Search Window Days value.</description>
+            <developerName>instruction_5</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 5</masterLabel>
+            <sortOrder>4</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If isSuccess is false for any other reason, relay the message to the patient and offer to try again.</description>
+            <developerName>instruction_6</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 6</masterLabel>
+            <sortOrder>5</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Once the patient selects a preferred slot, confirm the chosen date and time and inform them they can proceed to book the appointment.</description>
+            <developerName>instruction_7</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 7</masterLabel>
+            <sortOrder>6</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Do not book the appointment from this topic. Direct the patient to confirm booking through the Service Appointment Management topic.</description>
+            <developerName>instruction_8</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 8</masterLabel>
+            <sortOrder>7</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Do not suggest calling a phone number or contacting the clinic directly.</description>
+            <developerName>instruction_9</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 9</masterLabel>
+            <sortOrder>8</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Get_Appointment_Slots_Search_179ak000002vrmP</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Get_Appointment_Slots_Search_179ak000002vrmP</fullName>
+            <description>Fetches available in-person office visit slots for the doctor the 
+patient selected. Invoke this action when the patient wants to see 
+available times before booking. Always set Patient User Id from 
+the session and HealthcareProvider Record Id from the prior 
+doctor-finding topic conversation variable. Collect Preferred 
+Start Time from the patient. If the patient does not specify a 
+search window, default Search Window Days to 7.</description>
+            <developerName>Get_Appointment_Slots_Search_179ak000002vrmP</developerName>
+            <invocationTarget>Onco_GetAppointmentSlotAction</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Get_Appointment_Slots_Search</localDeveloperName>
+            <masterLabel>Get Appointment Slots Search</masterLabel>
+        </localActions>
+        <localDeveloperName>Appointment_Slot_Search</localDeveloperName>
+        <masterLabel>Appointment Slot Search</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>Search and display available appointment time slots for a specific 
+doctor already identified from the doctor-finding topic.
+Allow the patient to search further ahead if no slots are found 
+in the initial window.
+
+Do not book, cancel, or reschedule appointments — those are 
+handled by the Service Appointment Management topic.
+Do not find or recommend doctors — that is handled by a 
+separate topic.
+Do not answer general health or medical questions.</scope>
+    </localTopics>
+    <masterLabel>Health Assistant</masterLabel>
+    <plannerActions>
+        <fullName>AnswerQuestionsWithKnowledge_16jak000001jXQf</fullName>
+        <description>Answers questions about company policies and procedures, troubleshooting steps, or product information. For example: “What is your return policy?” “How do I fix an issue?” or “What features does a product have?”</description>
+        <developerName>AnswerQuestionsWithKnowledge_16jak000001jXQf</developerName>
+        <invocationTarget>streamKnowledgeSearch</invocationTarget>
+        <invocationTargetType>standardInvocableAction</invocationTargetType>
+        <isConfirmationRequired>false</isConfirmationRequired>
+        <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+        <localDeveloperName>AnswerQuestionsWithKnowledge</localDeveloperName>
+        <masterLabel>Answer Questions with Knowledge</masterLabel>
+        <progressIndicatorMessage>Getting answers</progressIndicatorMessage>
+        <source>EmployeeCopilot__AnswerQuestionsWithKnowledge</source>
+    </plannerActions>
+    <plannerSurfaces>
+        <adaptiveResponseAllowed>true</adaptiveResponseAllowed>
+        <callRecordingAllowed>false</callRecordingAllowed>
+        <surface>SurfaceAction__Messaging</surface>
+        <surfaceType>Messaging</surfaceType>
+    </plannerSurfaces>
+    <plannerSurfaces>
+        <adaptiveResponseAllowed>true</adaptiveResponseAllowed>
+        <callRecordingAllowed>false</callRecordingAllowed>
+        <surface>SurfaceAction__CustomerWebClient</surface>
+        <surfaceType>CustomerWebClient</surfaceType>
+    </plannerSurfaces>
+    <plannerType>AiCopilot__ReAct</plannerType>
+    <ruleExpressionAssignments>
+        <ruleExpressionName>Verified_User</ruleExpressionName>
+        <targetName>Appointment_Slot_Search_16jak000001jXQf</targetName>
+        <targetType>Plugin</targetType>
+    </ruleExpressionAssignments>
+    <ruleExpressionAssignments>
+        <ruleExpressionName>userId_Available</ruleExpressionName>
+        <targetName>Learn_About_Specialty_16jak000001jXQf</targetName>
+        <targetType>Plugin</targetType>
+    </ruleExpressionAssignments>
+    <ruleExpressionAssignments>
+        <ruleExpressionName>Verified_User</ruleExpressionName>
+        <targetName>Service_Appointment_Management_16jak000001jXQf.Service_Appointment_Manager_179ak000002uckb</targetName>
+        <targetType>PluginFunction</targetType>
+    </ruleExpressionAssignments>
+    <ruleExpressions>
+        <conditions>
+            <leftOperand>onco_LoggedIn_User_Id</leftOperand>
+            <leftOperandType>ContextVariable</leftOperandType>
+            <operator>isNotEmpty</operator>
+        </conditions>
+        <expressionLabel>userId Available</expressionLabel>
+        <expressionName>userId_Available</expressionName>
+        <expressionType>sel</expressionType>
+    </ruleExpressions>
+    <ruleExpressions>
+        <conditions>
+            <leftOperand>onco_LoggedIn_User_Id</leftOperand>
+            <leftOperandType>ContextVariable</leftOperandType>
+            <operator>isEmpty</operator>
+        </conditions>
+        <expressionLabel>userId Not Available</expressionLabel>
+        <expressionName>userId_Not_Available</expressionName>
+        <expressionType>sel</expressionType>
+    </ruleExpressions>
+    <ruleExpressions>
+        <conditions>
+            <leftOperand>isVerified</leftOperand>
+            <leftOperandType>Variable</leftOperandType>
+            <operator>equal</operator>
+            <rightOperandValue>true</rightOperandValue>
+        </conditions>
+        <expression>Verified_User</expression>
+        <expressionLabel>Verified User</expressionLabel>
+        <expressionName>Verified_User</expressionName>
+        <expressionType>sel</expressionType>
+    </ruleExpressions>
+</GenAiPlannerBundle>

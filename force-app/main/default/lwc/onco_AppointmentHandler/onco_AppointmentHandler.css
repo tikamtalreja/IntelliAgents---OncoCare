@@ -1,0 +1,266 @@
+:host {
+    display: block;
+    font-family: 'Salesforce Sans', Arial, sans-serif;
+    color: #181818;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.ac-card {
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.10);
+    overflow: hidden;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* ─── HEADER ─────────────────────────────────────────────────────── */
+.ac-header {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e5e5e5;
+    background: #fafaf9;
+}
+
+.ac-header-success {
+    /* Subtle green wash */
+    background: #F2FAF5;
+    border-bottom-color: #C5E5D2;
+}
+
+.ac-header-neutral {
+    background: #f3f3f3;
+    border-bottom-color: #d4d4d4;
+}
+
+.ac-header-warn {
+    background: #FEF8E7;
+    border-bottom-color: #F4CC56;
+}
+
+.ac-header-error {
+    background: #FEF1EE;
+    border-bottom-color: #EA001E;
+}
+
+.ac-header-text {
+    flex: 1 1 0;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.ac-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #080707;
+    margin: 0 0 0.0625rem 0;
+    line-height: 1.25;
+}
+
+.ac-sub {
+    font-size: 0.6875rem;
+    color: #706e6b;
+    margin: 0;
+    line-height: 1.35;
+}
+
+.ac-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.ac-icon-success { background: #1A5E32; }
+.ac-icon-primary { background: #0176d3; }
+.ac-icon-neutral { background: #706e6b; }
+.ac-icon-warn    { background: #674A00; }
+.ac-icon-error   { background: #EA001E; }
+
+/* ─── BODY (BOOK / CANCEL / CONFLICT) ────────────────────────────── */
+.ac-body {
+    padding: 0.875rem 1rem;
+}
+
+.ac-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem 1rem;
+}
+
+.ac-cell {
+    min-width: 0;
+}
+
+.ac-label {
+    font-size: 0.6875rem;
+    color: #706e6b;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    margin: 0 0 0.25rem 0;
+    line-height: 1.3;
+}
+
+.ac-value {
+    font-size: 0.875rem;
+    color: #080707;
+    margin: 0 0 0.625rem 0;
+    line-height: 1.35;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
+
+.ac-footnote {
+    font-size: 0.75rem;
+    color: #706e6b;
+    margin: 0.625rem 0 0 0;
+    line-height: 1.4;
+}
+
+/* ─── LIST view rows ─────────────────────────────────────────────── */
+.ac-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.ac-list-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem 1rem;
+    border-top: 1px solid #f3f3f3;
+}
+
+.ac-list-row:first-child {
+    border-top: none;
+}
+
+.ac-date-block {
+    width: 48px;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.ac-date-month {
+    font-size: 0.625rem;
+    color: #706e6b;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    line-height: 1;
+}
+
+.ac-date-day {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #032d60;
+    line-height: 1.1;
+}
+
+.ac-list-main {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.ac-list-doctor {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #032d60;
+    margin: 0 0 0.125rem 0;
+    word-break: break-word;
+}
+
+.ac-list-meta {
+    font-size: 0.75rem;
+    color: #706e6b;
+    margin: 0;
+    word-break: break-word;
+    line-height: 1.35;
+}
+
+/* ─── Empty list ─────────────────────────────────────────────────── */
+.ac-empty {
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+.ac-empty-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #080707;
+    margin: 0.625rem 0 0.125rem 0;
+}
+
+.ac-empty-sub {
+    font-size: 0.75rem;
+    color: #706e6b;
+    margin: 0;
+}
+
+/* ─── CONFLICT box ───────────────────────────────────────────────── */
+.ac-conflict-box {
+    background: #FEF8E7;
+    border: 1px solid #F4CC56;
+    border-radius: 0.25rem;
+    padding: 0.625rem 0.75rem;
+    margin: 0.625rem 0 0 0;
+}
+
+.ac-conflict-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+    flex-wrap: wrap;
+}
+
+.ac-meta-id {
+    font-size: 0.6875rem;
+    color: #706e6b;
+}
+
+.ac-conflict-detail {
+    font-size: 0.8125rem;
+    color: #080707;
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+.ac-conflict-subject {
+    font-size: 0.75rem;
+    color: #706e6b;
+    margin: 0.125rem 0 0 0;
+    line-height: 1.3;
+    word-break: break-word;
+}
+
+/* ─── Pills ──────────────────────────────────────────────────────── */
+.ds-pill {
+    font-size: 0.6875rem;
+    padding: 0.0625rem 0.5rem;
+    border-radius: 10rem;
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+.ds-pill-warn {
+    background: #FEF8E7;
+    color: #674A00;
+    border: 1px solid #F4CC56;
+}
+
+.ds-pill-danger {
+    background: #FEF1EE;
+    color: #8E030F;
+    border: 1px solid #EA001E;
+}

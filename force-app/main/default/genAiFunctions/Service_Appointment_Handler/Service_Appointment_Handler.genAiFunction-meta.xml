@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Manages all appointment operations: Book, Get, Cancel, Reschedule</description>
+    <developerName>Service_Appointment_Handler</developerName>
+    <invocationTarget>Onco_ServiceAppointmentHandler</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+    <localDeveloperName>Service_Appointment_Handler</localDeveloperName>
+    <masterLabel>Service Appointment Handler</masterLabel>
+</GenAiFunction>

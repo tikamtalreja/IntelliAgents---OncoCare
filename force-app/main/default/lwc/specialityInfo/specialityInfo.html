@@ -1,0 +1,122 @@
+<template>
+    <div class="si-wrap slds-p-around_x-small">
+
+        <!-- ══════ FOUND STATE ══════ -->
+        <template if:true={isFound}>
+
+            <article class="si-card slds-box slds-box_x-small slds-p-around_none">
+
+                <!-- Header -->
+                <header class="si-header slds-media slds-media_center slds-p-around_small">
+                    <div class="slds-media__figure">
+                        <div class="si-header-icon si-header-icon--blue">
+                            <svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true">
+                                <path d="M3 8l3 3 7-7" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="slds-media__body">
+                        <h2 class="si-header-title slds-text-heading_small slds-truncate" title={specialtyName}>{specialtyName}</h2>
+                        <p class="slds-text-body_small slds-text-color_weak">Specialty overview</p>
+                    </div>
+                </header>
+
+                <div class="si-body">
+
+                    <div class="si-body-inner slds-p-around_small">
+
+                        <!-- About section -->
+                        <template if:true={about}>
+                            <div class="si-section">
+                                <p class="si-section-label slds-text-title_caps">About this specialty</p>
+                                <p class="si-body-text slds-text-body_regular">{about}</p>
+                            </div>
+                        </template>
+
+                        <!-- Treatments -->
+                        <template if:true={hasTreatments}>
+                            <div class="si-section">
+                                <p class="si-section-label slds-text-title_caps">Treatments we provide</p>
+                                <div class="si-pills">
+                                    <template for:each={treatments} for:item="t">
+                                        <span key={t} class="si-pill">{t}</span>
+                                    </template>
+                                </div>
+                            </div>
+                        </template>
+
+                        <!-- Support services -->
+                        <template if:true={hasSupport}>
+                            <div class="si-section">
+                                <p class="si-section-label slds-text-title_caps">Support services</p>
+                                <ul class="si-list">
+                                    <template for:each={supportServices} for:item="s">
+                                        <li key={s} class="si-list-item">{s}</li>
+                                    </template>
+                                </ul>
+                            </div>
+                        </template>
+
+                        <!-- When to visit -->
+                        <template if:true={whenToVisit}>
+                            <div class="si-section">
+                                <p class="si-section-label slds-text-title_caps">When to visit</p>
+                                <p class="si-body-text slds-text-body_regular">{whenToVisit}</p>
+                            </div>
+                        </template>
+
+                        <!-- What to expect -->
+                        <template if:true={whatToExpect}>
+                            <div class="si-section">
+                                <p class="si-section-label slds-text-title_caps">What to expect</p>
+                                <p class="si-body-text slds-text-body_regular">{whatToExpect}</p>
+                            </div>
+                        </template>
+
+                        <!-- Insurance note -->
+                        <template if:true={insuranceNote}>
+                            <div class="si-section">
+                                <p class="si-section-label slds-text-title_caps">Insurance &amp; cost</p>
+                                <p class="si-body-text slds-text-body_regular">{insuranceNote}</p>
+                            </div>
+                        </template>
+
+                        <!-- RAG grounding badge -->
+                        <div class="si-rag-badge">
+                            <div class="si-rag-icon-wrap">
+                                <svg viewBox="0 0 16 16" width="14" height="14" fill="none" aria-hidden="true">
+                                    <circle cx="8" cy="8" r="6" stroke="#0b5cab" stroke-width="1.5"/>
+                                    <path d="M8 5v3l2 2" stroke="#0b5cab" stroke-width="1.5" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <div class="si-rag-text">
+                                <p class="si-rag-label">Grounded response</p>
+                                <p class="si-rag-desc">Generated from {sourceCount} source documents in our specialty knowledge library</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </article>
+
+        </template>
+
+        <!-- ══════ NOT FOUND STATE ══════ -->
+        <template if:false={isFound}>
+            <article class="si-card si-not-found slds-box slds-box_x-small slds-align_absolute-center slds-p-around_large">
+                <lightning-icon icon-name="utility:search" alternative-text="No results" size="medium" variant="inverse" class="si-nf-icon"></lightning-icon>
+                <p class="si-nf-title slds-text-heading_small slds-m-top_small">Specialty not found</p>
+                <template if:true={message}>
+                    <p class="si-nf-msg slds-text-body_small slds-text-color_weak slds-m-top_xx-small">{message}</p>
+                </template>
+                <div class="si-actions slds-m-top_medium">
+                    <button class="slds-button slds-button_brand si-btn-primary" data-action="find-doctor" onclick={handleAction}>
+                        Find a doctor instead
+                    </button>
+                </div>
+            </article>
+        </template>
+
+    </div>
+</template>

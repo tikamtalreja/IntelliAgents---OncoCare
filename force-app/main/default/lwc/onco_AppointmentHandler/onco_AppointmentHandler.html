@@ -1,0 +1,219 @@
+<template>
+    <article class="ac-card">
+
+        <!-- ════════════════════════════════════════════════════════════
+             VIEW: BOOK confirmation
+             ════════════════════════════════════════════════════════════ -->
+        <template if:true={isBookView}>
+            <div class="ac-header ac-header-success">
+                <div class="ac-icon ac-icon-success">
+                    <lightning-icon icon-name="utility:success" size="x-small" variant="inverse" alternative-text="Success"></lightning-icon>
+                </div>
+                <div class="ac-header-text">
+                    <h2 class="ac-title">Appointment booked</h2>
+                    <p class="ac-sub">{bookHeaderSub}</p>
+                </div>
+            </div>
+
+            <template if:true={value.appointment}>
+                <div class="ac-body">
+                    <div class="ac-grid">
+                        <div class="ac-cell">
+                            <p class="ac-label">Date &amp; time</p>
+                            <p class="ac-value">{value.appointment.startTime}</p>
+                        </div>
+                        <div class="ac-cell">
+                            <p class="ac-label">Duration</p>
+                            <p class="ac-value">{value.appointment.durationMinutes} minutes</p>
+                        </div>
+                        <div class="ac-cell">
+                            <p class="ac-label">Doctor</p>
+                            <p class="ac-value"> {value.appointment.doctorName}</p>
+                        </div>
+                        <div class="ac-cell">
+                            <p class="ac-label">Visit type</p>
+                            <p class="ac-value">{value.appointment.visitType}</p>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </template>
+
+        <!-- ════════════════════════════════════════════════════════════
+             VIEW: RESCHEDULE confirmation
+             ════════════════════════════════════════════════════════════ -->
+        <template if:true={isRescheduleView}>
+            <div class="ac-header ac-header-success">
+                <div class="ac-icon ac-icon-success">
+                    <lightning-icon icon-name="utility:refresh" size="x-small" variant="inverse" alternative-text="Rescheduled"></lightning-icon>
+                </div>
+                <div class="ac-header-text">
+                    <h2 class="ac-title">Appointment rescheduled</h2>
+                    <p class="ac-sub">{rescheduleHeaderSub}</p>
+                </div>
+            </div>
+
+            <template if:true={value.appointment}>
+                <div class="ac-body">
+                    <div class="ac-grid">
+                        <div class="ac-cell">
+                            <p class="ac-label">New date &amp; time</p>
+                            <p class="ac-value">{value.appointment.startTime}</p>
+                        </div>
+                        <div class="ac-cell">
+                            <p class="ac-label">Duration</p>
+                            <p class="ac-value">{value.appointment.durationMinutes} minutes</p>
+                        </div>
+                        <div class="ac-cell">
+                            <p class="ac-label">Doctor</p>
+                            <p class="ac-value"> {value.appointment.doctorName}</p>
+                        </div>
+                        <div class="ac-cell">
+                            <p class="ac-label">Visit type</p>
+                            <p class="ac-value">{value.appointment.visitType}</p>
+                        </div>
+                    </div>
+                    <p class="ac-footnote">Your previous time slot has been released.</p>
+                </div>
+            </template>
+        </template>
+
+        <!-- ════════════════════════════════════════════════════════════
+             VIEW: LIST of upcoming appointments
+             ════════════════════════════════════════════════════════════ -->
+        <template if:true={isListView}>
+            <div class="ac-header">
+                <div class="ac-icon ac-icon-primary">
+                    <lightning-icon icon-name="utility:event" size="x-small" variant="inverse" alternative-text="Calendar"></lightning-icon>
+                </div>
+                <div class="ac-header-text">
+                    <h2 class="ac-title">Your upcoming appointments</h2>
+                    <p class="ac-sub">{listHeaderSub}</p>
+                </div>
+            </div>
+
+            <template if:true={hasAppointments}>
+                <ul class="ac-list">
+                    <template for:each={value.appointments} for:item="a">
+                        <li key={a.serviceAppointmentId} class="ac-list-row">
+                            <div class="ac-date-block">
+                                <div class="ac-date-month">{a.shortMonth}</div>
+                                <div class="ac-date-day">{a.shortDay}</div>
+                            </div>
+                            <div class="ac-list-main">
+                                <p class="ac-list-doctor"> {a.doctorName}</p>
+                                <p class="ac-list-meta">
+                                    {a.startTime}
+                                    <template if:true={a.durationMinutes}> · {a.durationMinutes} min</template>
+                                    <template if:true={a.appointmentNumber}> · #{a.appointmentNumber}</template>
+                                </p>
+                            </div>
+                        </li>
+                    </template>
+                </ul>
+            </template>
+
+            <template if:false={hasAppointments}>
+                <div class="ac-empty">
+                    <lightning-icon icon-name="utility:event" size="medium" alternative-text="No appointments"></lightning-icon>
+                    <p class="ac-empty-title">No upcoming appointments</p>
+                    <p class="ac-empty-sub">Ask me to find a doctor when you'd like to book one.</p>
+                </div>
+            </template>
+        </template>
+
+        <!-- ════════════════════════════════════════════════════════════
+             VIEW: CANCEL confirmation
+             ════════════════════════════════════════════════════════════ -->
+        <template if:true={isCancelView}>
+            <div class="ac-header ac-header-neutral">
+                <div class="ac-icon ac-icon-neutral">
+                    <lightning-icon icon-name="utility:close" size="x-small" variant="inverse" alternative-text="Cancelled"></lightning-icon>
+                </div>
+                <div class="ac-header-text">
+                    <h2 class="ac-title">Appointment cancelled</h2>
+                    <p class="ac-sub">{cancelHeaderSub}</p>
+                </div>
+            </div>
+
+            <template if:true={value.appointment}>
+                <div class="ac-body">
+                    <div class="ac-grid">
+                        <div class="ac-cell">
+                            <p class="ac-label">Was scheduled for</p>
+                            <p class="ac-value">{value.appointment.startTime}</p>
+                        </div>
+                        <div class="ac-cell">
+                            <p class="ac-label">Doctor</p>
+                            <p class="ac-value"> {value.appointment.doctorName}</p>
+                        </div>
+                    </div>
+                    <p class="ac-footnote">Need to book again? Just ask me to find a doctor.</p>
+                </div>
+            </template>
+        </template>
+
+        <!-- ════════════════════════════════════════════════════════════
+             VIEW: CONFLICT warning
+             ════════════════════════════════════════════════════════════ -->
+        <template if:true={isConflictView}>
+            <div class="ac-header ac-header-warn">
+                <div class="ac-icon ac-icon-warn">
+                    <lightning-icon icon-name="utility:warning" size="x-small" variant="inverse" alternative-text="Conflict"></lightning-icon>
+                </div>
+                <div class="ac-header-text">
+                    <h2 class="ac-title">Time conflict detected</h2>
+                    <p class="ac-sub">You already have an appointment near this time</p>
+                </div>
+            </div>
+
+            <div class="ac-body">
+                <p class="ac-label">You requested</p>
+                <p class="ac-value">
+                    {value.requestedStartTime} 
+                    <template if:true={value.requestedDoctorName}>
+                        <span> with {value.requestedDoctorName} </span>
+                    </template>
+                </p>
+
+                <template if:true={hasConflict}>
+                    <div class="ac-conflict-box">
+                        <div class="ac-conflict-row">
+                            <span class={conflictPillClass}>{value.conflict.conflictType}</span>
+                            <template if:true={value.conflict.existingAppointmentId}>
+                                <span class="ac-meta-id">#{value.conflict.existingAppointmentId}</span>
+                            </template>
+                        </div>
+                        <p class="ac-conflict-detail">
+                            Existing: {value.conflict.existingStartTime} – {value.conflict.existingEndTime}
+                            <template if:true={value.conflict.existingDoctorName}>
+                             <span> with {value.conflict.existingDoctorName} </span>
+                            </template>
+                        </p>
+                        <template if:true={value.conflict.existingSubject}>
+                            <p class="ac-conflict-subject">Subject: {value.conflict.existingSubject}</p>
+                        </template>
+                    </div>
+                </template>
+
+                <p class="ac-footnote">Please choose a different time and try again.</p>
+            </div>
+        </template>
+
+        <!-- ════════════════════════════════════════════════════════════
+             VIEW: Generic error fallback
+             ════════════════════════════════════════════════════════════ -->
+        <template if:true={isErrorView}>
+            <div class="ac-header ac-header-error">
+                <div class="ac-icon ac-icon-error">
+                    <lightning-icon icon-name="utility:error" size="x-small" variant="inverse" alternative-text="Error"></lightning-icon>
+                </div>
+                <div class="ac-header-text">
+                    <h2 class="ac-title">Couldn't complete the action</h2>
+                    <p class="ac-sub">{errorMessage}</p>
+                </div>
+            </div>
+        </template>
+
+    </article>
+</template>

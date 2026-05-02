@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Retrieves structured specialty information from  knowledge library using RAG. Returns treatments, support services, what to expect, and insurance notes grounded in our specialty documents.</description>
+    <developerName>Get_Specialty_Info</developerName>
+    <invocationTarget>GetSpecialityInfo</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+    <localDeveloperName>Get_Specialty_Info</localDeveloperName>
+    <masterLabel>Get Specialty Info</masterLabel>
+    <progressIndicatorMessage>looking for details</progressIndicatorMessage>
+</GenAiFunction>

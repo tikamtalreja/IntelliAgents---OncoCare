@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Returns a list of options (specialities, departments, or facilities) for the patient to pick from.</description>
+    <developerName>Get_Search_Options</developerName>
+    <invocationTarget>Onco_GetSearchOption</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+    <localDeveloperName>Get_Search_Options</localDeveloperName>
+    <masterLabel>Get Search Options</masterLabel>
+    <progressIndicatorMessage>Looking for options</progressIndicatorMessage>
+</GenAiFunction>

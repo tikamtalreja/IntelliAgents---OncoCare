@@ -1,0 +1,27 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "healthcareProviderId" : {
+      "title" : "healthcareProviderId",
+      "description" : "Salesforce record Id of the Healthcare Provider. Used as fallback when unique code is not provided.",
+      "lightning:type" : "lightning__recordIdType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "healthcareProviderName" : {
+      "title" : "healthcareProviderName",
+      "description" : "Name of the Healthcare Provider. Used as fallback when unique code and provider Id are not provided.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "uniqueCode" : {
+      "title" : "uniqueCode",
+      "description" : "Unique authentication code assigned to the HCP. Used to identify and authenticate the healthcare provider before fetching appointments.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}
